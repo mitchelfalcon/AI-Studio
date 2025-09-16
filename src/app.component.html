@@ -1,0 +1,15 @@
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 top-0 left-0 bg-white text-blue-600 p-4 rounded-br-lg shadow-lg">
+  Skip to main content
+</a>
+<app-header></app-header>
+<main id="main-content">
+  <app-hero></app-hero>
+  <app-services></app-services>
+  <app-testimonials></app-testimonials>
+</main>
+<app-footer 
+  (contrastToggle)="onContrastToggle()" 
+  (fontSizeChange)="onFontSizeChange($event)"
+  [highContrast]="highContrast()"
+  [fontSize]="fontSize()">
+</app-footer>

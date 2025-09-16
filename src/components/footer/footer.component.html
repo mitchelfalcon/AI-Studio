@@ -1,0 +1,139 @@
+<footer class="bg-slate-800 text-stone-300 high-contrast:bg-black high-contrast:text-gray-200 high-contrast:border-t-2 high-contrast:border-white">
+  <div class="container mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- About Section -->
+      <div class="col-span-1 md:col-span-2">
+        <h3 class="text-xl font-bold text-white high-contrast:text-yellow-400 mb-4">El Sendero Sensorial</h3>
+        <p class="text-stone-400 high-contrast:text-gray-300">
+          Un modelo de diseño inclusivo y funcional enfocado en la atención a niños con Trastorno del Espectro Autista (TEA) en México.
+        </p>
+      </div>
+
+      <!-- Links Section -->
+      <div>
+        <h3 class="text-xl font-bold text-white high-contrast:text-yellow-400 mb-4">Enlaces Rápidos</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-teal-400 high-contrast:hover:text-yellow-400 transition-colors">Inicio</a></li>
+          <li><a href="#servicios" class="hover:text-teal-400 high-contrast:hover:text-yellow-400 transition-colors">Servicios</a></li>
+          <li><a href="#testimonios" class="hover:text-teal-400 high-contrast:hover:text-yellow-400 transition-colors">Testimonios</a></li>
+          <li><a href="#" class="hover:text-teal-400 high-contrast:hover:text-yellow-400 transition-colors">Declaración de Accesibilidad</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div>
+        <h3 class="text-xl font-bold text-white high-contrast:text-yellow-400 mb-4">Contacto</h3>
+        <ul class="space-y-2 text-stone-400 high-contrast:text-gray-300">
+          <li>Dirección: Ciudad de México, MX</li>
+          <li>Email: contacto@senderosensorial.mx</li>
+          <li>Teléfono: +52 55 1234 5678</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-slate-700 high-contrast:border-gray-500 pt-8 flex flex-col sm:flex-row justify-between items-center text-center">
+      <p class="text-stone-400 high-contrast:text-gray-300">
+        &copy; {{ currentYear }} El Sendero Sensorial. Todos los derechos reservados.
+      </p>
+      <!-- Social Media Icons could go here -->
+    </div>
+  </div>
+</footer>
+
+<!-- Accessibility Widget Button -->
+<button (click)="toggleWidget()"
+        type="button"
+        class="fixed bottom-6 right-6 bg-teal-600 high-contrast:bg-yellow-400 high-contrast:text-black text-white p-4 rounded-full shadow-lg hover:bg-teal-700 high-contrast:hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 transition-transform duration-300 hover:scale-110"
+        [attr.aria-expanded]="isWidgetMounted()"
+        aria-controls="accessibility-widget"
+        [attr.aria-label]="isWidgetMounted() ? 'Close accessibility panel' : 'Open accessibility panel'">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M10 3a1 1 0 00-1 1v1a1 1 0 102 0V4a1 1 0 00-1-1z" />
+      <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+    </svg>
+</button>
+
+<!-- Accessibility Widget Panel -->
+@if (isWidgetMounted()) {
+  <div id="accessibility-widget"
+       class="fixed bottom-24 right-6 bg-white high-contrast:bg-black high-contrast:border high-contrast:border-white rounded-lg shadow-2xl p-6 w-72 origin-bottom-right motion-safe:transition-all duration-300 ease-in-out"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="accessibility-widget-title"
+       [attr.aria-hidden]="!isWidgetVisible()"
+       [class.opacity-0]="!isWidgetVisible()"
+       [class.motion-safe:scale-95]="!isWidgetVisible()"
+       [class.motion-safe:translate-y-4]="!isWidgetVisible()">
+    <div class="flex justify-between items-center mb-4">
+        <h3 id="accessibility-widget-title" class="text-xl font-bold text-slate-800 high-contrast:text-white">Accesibilidad</h3>
+        <button (click)="toggleWidget()" type="button" class="p-1 rounded-full text-slate-500 hover:text-slate-800 high-contrast:text-gray-300 high-contrast:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black" aria-label="Cerrar panel de accesibilidad">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div class="space-y-4">
+        <div>
+            <label class="block text-slate-700 high-contrast:text-gray-200 mb-2 font-semibold">Contraste</label>
+            <button (click)="toggleHighContrast()" 
+                    [attr.aria-pressed]="highContrast()"
+                    [disabled]="contrastLoading()"
+                    class="w-full text-left flex items-center justify-between px-4 py-2 rounded-md bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 high-contrast:bg-gray-800 high-contrast:hover:bg-gray-700 high-contrast:focus:bg-gray-700 high-contrast:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black"
+                    [class.cursor-wait]="contrastLoading()"
+                    [class.opacity-75]="contrastLoading()">
+                @if (contrastLoading()) {
+                  <span class="flex items-center">
+                      <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Aplicando...
+                  </span>
+                } @else {
+                  <span>{{ highContrast() ? 'Desactivar Alto Contraste' : 'Activar Alto Contraste' }}</span>
+                }
+            </button>
+        </div>
+        <div>
+            <label id="font-size-group-label" class="block text-slate-700 high-contrast:text-gray-200 mb-2 font-semibold">Tamaño de Fuente</label>
+            <div class="flex space-x-2" role="group" aria-labelledby="font-size-group-label">
+                <button (click)="changeFontSize('base')" [attr.aria-pressed]="fontSize() === 'base'" [disabled]="fontSizeLoading() !== null" class="flex-1 px-4 py-2 rounded-md bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 high-contrast:bg-gray-800 high-contrast:hover:bg-gray-700 high-contrast:focus:bg-gray-700 high-contrast:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black" [class.cursor-wait]="fontSizeLoading() !== null">
+                  @if (fontSizeLoading() === 'base') {
+                    <span class="flex items-center justify-center">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                  } @else {
+                    <span>Normal</span>
+                  }
+                </button>
+                <button (click)="changeFontSize('lg')" [attr.aria-pressed]="fontSize() === 'lg'" [disabled]="fontSizeLoading() !== null" class="flex-1 px-4 py-2 rounded-md bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 high-contrast:bg-gray-800 high-contrast:hover:bg-gray-700 high-contrast:focus:bg-gray-700 high-contrast:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black" [class.cursor-wait]="fontSizeLoading() !== null">
+                  @if (fontSizeLoading() === 'lg') {
+                    <span class="flex items-center justify-center">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                  } @else {
+                    <span>Grande</span>
+                  }
+                </button>
+                <button (click)="changeFontSize('xl')" [attr.aria-pressed]="fontSize() === 'xl'" [disabled]="fontSizeLoading() !== null" class="flex-1 px-4 py-2 rounded-md bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 high-contrast:bg-gray-800 high-contrast:hover:bg-gray-700 high-contrast:focus:bg-gray-700 high-contrast:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black" [class.cursor-wait]="fontSizeLoading() !== null">
+                  @if (fontSizeLoading() === 'xl') {
+                    <span class="flex items-center justify-center">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                  } @else {
+                    <span>Extra</span>
+                  }
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,46 @@
+<header class="bg-white/80 backdrop-blur-sm sticky top-0 z-40 shadow-sm high-contrast:shadow-none high-contrast:bg-black high-contrast:border-b high-contrast:border-white">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 rounded-lg">
+        <svg class="h-10 w-10 text-teal-600 high-contrast:text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+        <span class="text-2xl font-bold text-slate-800 high-contrast:text-white">El Sendero Sensorial</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav aria-label="Menú principal" class="hidden md:flex items-center">
+        <ul class="flex items-center space-x-8">
+          <li><a href="#" class="text-slate-600 hover:text-teal-600 high-contrast:text-gray-200 high-contrast:hover:text-yellow-400 transition-colors duration-300 text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black">Inicio</a></li>
+          <li><a href="#servicios" class="text-slate-600 hover:text-teal-600 high-contrast:text-gray-200 high-contrast:hover:text-yellow-400 transition-colors duration-300 text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black">Servicios</a></li>
+          <li><a href="#testimonios" class="text-slate-600 hover:text-teal-600 high-contrast:text-gray-200 high-contrast:hover:text-yellow-400 transition-colors duration-300 text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black">Testimonios</a></li>
+          <li><a href="#" class="text-slate-600 hover:text-teal-600 high-contrast:text-gray-200 high-contrast:hover:text-yellow-400 transition-colors duration-300 text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 high-contrast:focus:ring-offset-black">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button (click)="toggleMenu()" type="button" class="text-slate-600 hover:text-teal-600 high-contrast:text-gray-200 high-contrast:hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 high-contrast:focus:ring-yellow-400 rounded-md p-1" 
+                [attr.aria-label]="isMenuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+                [attr.aria-expanded]="isMenuOpen()"
+                aria-controls="mobile-menu">
+          <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMenuOpen()) {
+      <div id="mobile-menu" class="md:hidden mt-4 bg-white rounded-md shadow-lg animate-fade-in-down high-contrast:bg-black high-contrast:border high-contrast:border-white">
+        <ul class="py-1">
+          <li><a (click)="closeMenu()" href="#" class="block py-2 px-4 text-lg text-slate-600 hover:bg-teal-50 high-contrast:text-gray-200 high-contrast:hover:bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 high-contrast:focus:ring-yellow-400">Inicio</a></li>
+          <li><a (click)="closeMenu()" href="#servicios" class="block py-2 px-4 text-lg text-slate-600 hover:bg-teal-50 high-contrast:text-gray-200 high-contrast:hover:bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 high-contrast:focus:ring-yellow-400">Servicios</a></li>
+          <li><a (click)="closeMenu()" href="#testimonios" class="block py-2 px-4 text-lg text-slate-600 hover:bg-teal-50 high-contrast:text-gray-200 high-contrast:hover:bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 high-contrast:focus:ring-yellow-400">Testimonios</a></li>
+          <li><a (click)="closeMenu()" href="#" class="block py-2 px-4 text-lg text-slate-600 hover:bg-teal-50 high-contrast:text-gray-200 high-contrast:hover:bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 high-contrast:focus:ring-yellow-400">Contacto</a></li>
+        </ul>
+      </div>
+    }
+  </nav>
+</header>

@@ -1,0 +1,27 @@
+<section id="servicios" class="py-20 lg:py-28">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 high-contrast:text-white">Una Cuadrícula de Exploración Sensorial</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto high-contrast:text-gray-200">
+        Presentamos nuestros servicios clave, diseñados para guiar al usuario a través de la propuesta de valor del proyecto.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      @for (service of services(); track service.title) {
+        <div class="bg-white rounded-xl shadow-lg p-8 transform hover:-translate-y-2 transition-transform duration-300 high-contrast:bg-black high-contrast:border high-contrast:border-white">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 mb-6 high-contrast:bg-yellow-400/20">
+            <svg class="h-8 w-8 text-teal-600 high-contrast:text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="service.icon" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-800 mb-3 high-contrast:text-white">{{ service.title }}</h3>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6 high-contrast:text-gray-200">{{ service.description }}</p>
+          <a href="#" class="inline-block text-lg font-bold text-teal-600 hover:text-teal-800 high-contrast:text-yellow-400 high-contrast:hover:text-yellow-300 transition-colors duration-300 group">
+            Más Información
+            <span class="inline-block transform group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
